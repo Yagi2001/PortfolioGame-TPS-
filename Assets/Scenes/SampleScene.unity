@@ -151,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475647554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 355.14648, y: 4.58, z: 236.61899}
+  m_LocalPosition: {x: 355.14648, y: 4.58, z: 464.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1550,7 +1550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.00819397
+      value: 0.008178711
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3551,6 +3551,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1813778221}
   - component: {fileID: 1813778220}
+  - component: {fileID: 1813778222}
+  - component: {fileID: 1813778223}
   m_Layer: 0
   m_Name: ZombieEnemy
   m_TagString: Untagged
@@ -3587,7 +3589,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813778219}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 355.14648, y: 3.793, z: 238.64}
+  m_LocalPosition: {x: 355.14648, y: 3.15, z: 475.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3595,6 +3597,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1813778222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813778219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ebaebfddf033645a397d68925f4281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 475647555}
+  _runSpeed: 6
+  _attackRange: 1.5
+  _visionRange: 20
+  _attackAnimationWaitTime: 2.5
+--- !u!136 &1813778223
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813778219}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!4 &1878458742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6874584590210671055, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
