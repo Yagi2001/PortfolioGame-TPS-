@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 475647555}
   - component: {fileID: 475647557}
   - component: {fileID: 475647556}
+  - component: {fileID: 475647558}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -196,6 +197,27 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!95 &475647558
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475647554}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3b9bfcdcf08e5b64a87d86dffc067e67, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +375,8 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
 --- !u!1 &963194225
 GameObject:
@@ -487,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49f319c47d7ead46b9f6138543c2e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseSensitivity: 3
+  _mouseSensitivity: 300
 --- !u!4 &1361318895 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}

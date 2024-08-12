@@ -12,14 +12,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _groundDistance = 0.4f;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private Transform _feetTransform;
-
-    private CharacterController _characterController;
     private Vector3 _velocity;
     private bool _isGrounded;
+
+    private CharacterController _characterController;
+    private Animator _anim;
+
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -45,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 dir = new Vector3( horizontalInput, 0, verticalInput ).normalized;
         dir = transform.TransformDirection( dir );
+        if (dir != Vector3.zero)
+            _anim.SetBool( "isRunning", true );
+        else
+            _anim.SetBool( "isRunning", false );
+
         _characterController.Move( dir * _moveSpeed * Time.deltaTime );
     }
 
