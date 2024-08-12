@@ -5,14 +5,13 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header( "Movement Settings" )]
     [SerializeField] private float _moveSpeed = 6f;
-    [SerializeField] private float _rotationSpeed = 500f;
 
     [Header( "Jumping Settings" )]
     [SerializeField] private float _jumpHeight = 2f;
     [SerializeField] private float _gravity = -9.8f;
     [SerializeField] private float _groundDistance = 0.4f;
     [SerializeField] private LayerMask _groundMask;
-    [SerializeField] private Transform _feetTransform;  // Assign the "Feet" GameObject here
+    [SerializeField] private Transform _feetTransform;
 
     private CharacterController _characterController;
     private Vector3 _velocity;
@@ -33,12 +32,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CheckGroundStatus()
     {
-        // Check if feetTransform is touching the ground
         bool grounded = Physics.CheckSphere( _feetTransform.position, _groundDistance, _groundMask );
         if (grounded && _velocity.y < 0)
-        {
-            _velocity.y = -2f; // Keep the player grounded
-        }
+            _velocity.y = -2f; 
         return grounded;
     }
 
@@ -48,22 +44,14 @@ public class PlayerMovement : MonoBehaviour
         float verticalInput = Input.GetAxisRaw( "Vertical" );
 
         Vector3 dir = new Vector3( horizontalInput, 0, verticalInput ).normalized;
-
-        if (dir != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation( dir );
-            transform.rotation = Quaternion.RotateTowards( transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime );
-        }
-
+        dir = transform.TransformDirection( dir );
         _characterController.Move( dir * _moveSpeed * Time.deltaTime );
     }
 
     private void HandleJump()
     {
         if (Input.GetButtonDown( "Jump" ) && _isGrounded)
-        {
             _velocity.y = Mathf.Sqrt( _jumpHeight * -2f * _gravity );
-        }
     }
 
     private void ApplyGravity()
@@ -72,12 +60,12 @@ public class PlayerMovement : MonoBehaviour
         _characterController.Move( _velocity * Time.deltaTime );
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         if (_feetTransform == null)
             return;
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere( _feetTransform.position, _groundDistance );
-    }
+    }*/
 }
