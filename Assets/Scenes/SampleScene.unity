@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 475647555}
   - component: {fileID: 475647557}
   - component: {fileID: 475647556}
+  - component: {fileID: 475647559}
   - component: {fileID: 475647558}
   m_Layer: 0
   m_Name: Player
@@ -218,6 +219,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &475647559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475647554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc16d7254b05014d8fd0c1976c0026d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,9 +376,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7764487651825262745, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
+      propertyPath: m_Name
+      value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: -3685692520585564748, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
+      propertyPath: m_Name
+      value: Helmet
+      objectReference: {fileID: 0}
+    - target: {fileID: -1283408554089789195, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
+      propertyPath: m_Name
+      value: Paladin_J_Nordstrom
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
       propertyPath: m_Name
       value: Warrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051571768989249988, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
+      propertyPath: m_Name
+      value: Sword
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
       propertyPath: m_Controller
