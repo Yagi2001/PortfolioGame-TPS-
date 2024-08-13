@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &342385366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2158975759703390516, guid: 688db85fd222f674081c1043fb1c7f8c, type: 3}
+  m_PrefabInstance: {fileID: 1589458451}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &383447628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3667946887678727147, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}
@@ -143,7 +148,7 @@ GameObject:
   - component: {fileID: 475647558}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3699,6 +3704,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 20
   _damageTakenWithHit: 5
+  _weapon: {fileID: 342385366}
+  _maxDistance: 0.5
 --- !u!4 &1878458742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6874584590210671055, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}

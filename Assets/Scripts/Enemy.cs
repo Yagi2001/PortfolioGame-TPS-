@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         transform.LookAt( _player );
         float distanceToPlayer = Vector3.Distance( transform.position, _player.position );
 
-        if (distanceToPlayer <= _visionRange && distanceToPlayer >= _attackRange)
+        if (distanceToPlayer <= _visionRange && distanceToPlayer >= _attackRange && CanMoveAgain())
         {
             RunToEnemy();
         }
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private bool CanMoveAgain()
+    public bool CanMoveAgain()
     {
         return Time.time >= _timeToStartRunAgain;
     }
