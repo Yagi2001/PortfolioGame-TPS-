@@ -12,8 +12,10 @@ public class EnemyCombat : MonoBehaviour
     private GameObject _weapon;
     [SerializeField]
     private float _maxDistance = 0.5f;
+    [SerializeField]
+    private float _waitTimeForNextAttack;
     private Enemy Enemy;
-    private bool _hasHit;
+    private float _timeToAttack;
 
     private void Awake()
     {
@@ -33,18 +35,26 @@ public class EnemyCombat : MonoBehaviour
             Destroy( gameObject );
         }
     }
+    
+    private bool HasHit()
+    {
+        if (_timeToAttack+0.5f <= Time.time) //0.5f is used to control the PerformRayCast
+            return false;
+        else
+            return true;
+    }
 
     private void PerformRaycast()
     {
         RaycastHit hit;
         if (Physics.Raycast( _weapon.transform.position, _weapon.transform.up, out hit, _maxDistance ))
         {
-            if (hit.collider.CompareTag( "Player" ) && !Enemy.CanMoveAgain())
+            if (hit.collider.CompareTag( "Player" )&& !Enemy.CanAttack()&&!HasHit())
             {
-                Debug.Log( "Hit" + hit.collider.name );
-                //EnemyCombat enemy = hit.collider.GetComponent<EnemyCombat>();
-                //enemy.TakeDamage();
-                //_hasHit = true;
+                _timeToAttack = Time.time + _waitTimeForNextAttack;
+                PlayerCombat player = hit.collider.GetComponent<PlayerCombat>();
+                player.TakeDamage();
+
             }
         }
     }

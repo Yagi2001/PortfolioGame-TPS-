@@ -241,10 +241,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc16d7254b05014d8fd0c1976c0026d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 100
+  _damageTaken: 5
   _maxDistance: 0.5
   _weapon: {fileID: 1597884745}
   _attackCooldown: 2
-  _timeToAttack: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3675,7 +3676,7 @@ MonoBehaviour:
   _runSpeed: 6
   _attackRange: 1.5
   _visionRange: 20
-  _attackAnimationWaitTime: 2.5
+  _attackAnimationTime: 2
 --- !u!136 &1813778223
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3705,7 +3706,8 @@ MonoBehaviour:
   _health: 20
   _damageTakenWithHit: 5
   _weapon: {fileID: 342385366}
-  _maxDistance: 0.5
+  _maxDistance: 1.75
+  _waitTimeForNextAttack: 0
 --- !u!4 &1878458742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6874584590210671055, guid: 22bd1161408a0464588b90bbae309bc9, type: 3}

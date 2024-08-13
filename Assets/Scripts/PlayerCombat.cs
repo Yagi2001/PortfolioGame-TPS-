@@ -5,13 +5,16 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField]
+    private float _health;
+    [SerializeField]
+    private float _damageTaken;
+    [SerializeField]
     private float _maxDistance = 0.5f;
     [SerializeField]
     private GameObject _weapon;
     [SerializeField]
     private float _attackCooldown;
-    [SerializeField]
-    private float _timeToAttack;
+    private float _timeToAttack = 0f;
     private Animator _anim;
     private bool _hasHit;
     
@@ -72,5 +75,11 @@ public class PlayerCombat : MonoBehaviour
                 _hasHit = true;
             }
         }
+    }
+
+    public void TakeDamage()
+    {
+        _health = _health - _damageTaken;
+        Debug.Log( _health );
     }
 }

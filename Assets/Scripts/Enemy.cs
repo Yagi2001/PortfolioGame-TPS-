@@ -13,11 +13,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _visionRange;
     [SerializeField]
-    private float _attackAnimationWaitTime;
-
-    private float _lastAttackTime;
-    private float _timeToStartRunAgain;
+    private float _attackAnimationTime;
     private Animator _anim;
+    private float _nextAttackTime;
 
     private void Start()
     {
@@ -29,32 +27,39 @@ public class Enemy : MonoBehaviour
         transform.LookAt( _player );
         float distanceToPlayer = Vector3.Distance( transform.position, _player.position );
 
-        if (distanceToPlayer <= _visionRange && distanceToPlayer >= _attackRange && CanMoveAgain())
+        if (distanceToPlayer <= _visionRange && distanceToPlayer >= _attackRange)
         {
             RunToEnemy();
         }
-        else if (distanceToPlayer < _attackRange && CanMoveAgain())
+        else
         {
             Attack();
         }
     }
 
-    public bool CanMoveAgain()
+    public bool CanAttack()
     {
-        return Time.time >= _timeToStartRunAgain;
+        return (Time.time >= _nextAttackTime);
+    }
+
+    private bool CanRun()
+    {
+        return (Time.time >= _nextAttackTime);
     }
 
     private void Attack()
     {
-        _lastAttackTime = Time.time;
-        _timeToStartRunAgain = _lastAttackTime + _attackAnimationWaitTime;
-        _anim.SetBool( "isRunning", false );
-        _anim.SetTrigger( "attackTrigger" );
+        if (CanAttack())
+        {
+            _nextAttackTime = Time.time + _attackAnimationTime;
+            _anim.SetBool( "isRunning", false );
+            _anim.SetTrigger( "attackTrigger" );
+        }
     }
 
     private void RunToEnemy()
     {
-        if (CanMoveAgain())
+        if (CanRun())
         {
             _anim.SetBool( "isRunning", true );
             transform.position += transform.forward * _runSpeed * Time.deltaTime;
