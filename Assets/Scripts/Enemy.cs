@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _anim = GetComponent<Animator>();
+        _player = GameObject.Find( "Player" ).transform;
     }
 
     private void Update()
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
+        
         if (CanAttack())
         {
             _nextAttackTime = Time.time + _attackAnimationTime;
