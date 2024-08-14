@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     private Animator _anim;
     private float _nextAttackTime;
 
+
     private void Start()
     {
         _anim = GetComponent<Animator>();

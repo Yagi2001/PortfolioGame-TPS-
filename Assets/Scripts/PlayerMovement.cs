@@ -17,16 +17,22 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController _characterController;
     private Animator _anim;
+    private float _storedMoveSpeed;
 
 
     private void Awake()
     {
+        _storedMoveSpeed = _moveSpeed;
         _characterController = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        if (_anim.GetBool( "isBlocking" ))
+            _moveSpeed = 0f;
+        else
+            _moveSpeed = _storedMoveSpeed;
         _isGrounded = CheckGroundStatus();
         HandleMovement();
         HandleJump();

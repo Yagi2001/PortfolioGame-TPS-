@@ -17,7 +17,7 @@ public class PlayerCombat : MonoBehaviour
     private float _timeToAttack = 0f;
     private Animator _anim;
     private bool _hasHit;
-    
+
     private void Start()
     {
         _anim = GetComponent<Animator>();
@@ -52,10 +52,10 @@ public class PlayerCombat : MonoBehaviour
             _hasHit = false;
             return false;
         }
-           
+
     }
 
-    private bool  IsBlocking()
+    private bool IsBlocking()
     {
         if (Input.GetKey( KeyCode.Mouse1 ))
             return true;
@@ -68,7 +68,7 @@ public class PlayerCombat : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast( _weapon.transform.position, _weapon.transform.up, out hit, _maxDistance ))
         {
-            if(hit.collider.CompareTag("Enemy") && !_hasHit)
+            if (hit.collider.CompareTag( "Enemy" ) && !_hasHit)
             {
                 EnemyCombat enemy = hit.collider.GetComponent<EnemyCombat>();
                 enemy.TakeDamage();
@@ -79,7 +79,10 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage()
     {
-        _health = _health - _damageTaken;
+        if(IsBlocking())
+            _health = _health - _damageTaken/5;
+        else
+            _health = _health - _damageTaken;
         Debug.Log( _health );
     }
 }
