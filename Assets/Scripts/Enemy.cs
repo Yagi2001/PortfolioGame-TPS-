@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     private float _visionRange;
     [SerializeField]
     private float _attackAnimationTime;
+    [SerializeField]
+    private AudioSource[] _effortSounds;
     private Animator _anim;
     private float _nextAttackTime;
 
@@ -54,9 +56,11 @@ public class Enemy : MonoBehaviour
         
         if (CanAttack())
         {
+            int indexOfSound = Random.Range( 0, _effortSounds.Length );
             _nextAttackTime = Time.time + _attackAnimationTime;
             _anim.SetBool( "isRunning", false );
             _anim.SetTrigger( "attackTrigger" );
+            //_effortSounds[indexOfSound].Play();
         }
     }
 

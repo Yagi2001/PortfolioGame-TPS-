@@ -14,9 +14,14 @@ public class PlayerCombat : MonoBehaviour
     private GameObject _weapon;
     [SerializeField]
     private float _attackCooldown;
+    [SerializeField]
+    private AudioSource[] _effortSounds;
+    [SerializeField]
+    private AudioSource _blockSound;
     private float _timeToAttack = 0f;
     private Animator _anim;
     private bool _hasHit;
+
 
     private void Start()
     {
@@ -38,8 +43,10 @@ public class PlayerCombat : MonoBehaviour
     {
         if (_timeToAttack < Time.time)
         {
+            int indexOfSound = Random.Range( 0, _effortSounds.Length );
             _timeToAttack = Time.time + _attackCooldown;
             _anim.SetTrigger( "attackTrigger" );
+            _effortSounds[indexOfSound].Play();
         }
     }
 
@@ -52,7 +59,6 @@ public class PlayerCombat : MonoBehaviour
             _hasHit = false;
             return false;
         }
-
     }
 
     private bool IsBlocking()
@@ -79,10 +85,23 @@ public class PlayerCombat : MonoBehaviour
 
     public void TakeDamage()
     {
-        if(IsBlocking())
-            _health = _health - _damageTaken/5;
+        StartCoroutine( TakeDamageWithDelay() );
+    }
+
+    private IEnumerator TakeDamageWithDelay()
+    {
+        yield return new WaitForSeconds( 0.75f ); 
+
+        if (IsBlocking())
+        {
+            _health = _health - _damageTaken / 5;
+            _blockSound.Play();
+        }
         else
+        {
             _health = _health - _damageTaken;
+        }
+
         Debug.Log( _health );
     }
 }
