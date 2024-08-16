@@ -28,6 +28,13 @@ public class EnemyCombat : MonoBehaviour
     }
     public void TakeDamage()
     {
+        StartCoroutine( TakeDamageWithDelay() );
+    }
+
+    private IEnumerator TakeDamageWithDelay()
+    {
+        yield return new WaitForSeconds( 0.15f );
+
         _health -= _damageTakenWithHit;
         if (_health <= 0)
         {
@@ -35,7 +42,7 @@ public class EnemyCombat : MonoBehaviour
             Destroy( gameObject );
         }
     }
-    
+
     private bool HasHit()
     {
         if (_timeToAttack+0.5f <= Time.time) //0.5f is used to control the PerformRayCast
