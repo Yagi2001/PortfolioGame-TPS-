@@ -16,9 +16,12 @@ public class EnemyCombat : MonoBehaviour
     private float _waitTimeForNextAttack;
     private Enemy Enemy;
     private float _timeToAttack;
+    private Animator _anim;
+    public bool isDead;
 
     private void Awake()
     {
+        _anim = GetComponent<Animator>();
         Enemy = GetComponent<Enemy>();
     }
 
@@ -38,8 +41,11 @@ public class EnemyCombat : MonoBehaviour
         _health -= _damageTakenWithHit;
         if (_health <= 0)
         {
+            isDead = true;
             //Here I will add death anim
-            Destroy( gameObject );
+            //Destroy( gameObject );
+            _anim.SetBool( "isDead", true );
+            Destroy( Enemy );
         }
     }
 

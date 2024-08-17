@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 88275991063615240}
   - component: {fileID: 88275991063615241}
+  - component: {fileID: 1509979796540532941}
   m_Layer: 0
   m_Name: Ally
   m_TagString: Untagged
@@ -54,6 +55,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1509979796540532941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88275991063615242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b4e39551dd5a474ebc08867defc8633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveObjects: []
+  _checkInterval: 0
+  _smokeVFX: {fileID: 1004051888121160321, guid: a9db23e79a77e33499e0c380adadb7ce, type: 3}
 --- !u!1001 &88275990457774558
 PrefabInstance:
   m_ObjectHideFlags: 0
