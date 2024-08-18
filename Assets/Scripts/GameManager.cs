@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadPlayerWon()
     {
         yield return new WaitForSeconds( 2f );
+        EnableCursor();
+        LoadGameOverScene();
         SceneManager.LoadScene( "PlayerWonScene" );
     }
 
