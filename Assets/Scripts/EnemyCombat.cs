@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyCombat : MonoBehaviour
 {
     [SerializeField]
@@ -18,6 +19,7 @@ public class EnemyCombat : MonoBehaviour
     private float _timeToAttack;
     private Animator _anim;
     public bool isDead;
+
 
     private void Awake()
     {
@@ -66,8 +68,8 @@ public class EnemyCombat : MonoBehaviour
             {
                 _timeToAttack = Time.time + _waitTimeForNextAttack;
                 PlayerCombat player = hit.collider.GetComponent<PlayerCombat>();
-                player.TakeDamage();
-
+                if(player!=null)
+                    player.TakeDamage();
             }
         }
     }

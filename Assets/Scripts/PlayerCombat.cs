@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerCombat : MonoBehaviour
     private float _timeToAttack = 0f;
     private Animator _anim;
     private bool _hasHit;
+    public static Action CharacterDead;
 
 
     private void Start()
@@ -43,7 +45,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (_timeToAttack < Time.time)
         {
-            int indexOfSound = Random.Range( 0, _effortSounds.Length );
+            int indexOfSound = UnityEngine.Random.Range( 0, _effortSounds.Length );
             _timeToAttack = Time.time + _attackCooldown;
             _anim.SetTrigger( "attackTrigger" );
             _effortSounds[indexOfSound].Play();
@@ -88,6 +90,18 @@ public class PlayerCombat : MonoBehaviour
         StartCoroutine( TakeDamageWithDelay() );
     }
 
+    public void PlayerDeath()
+    {
+        _anim.SetBool( "isDying", true );
+        Vector3 newPosition = transform.position;
+        newPosition.y -= 0.7f;
+        transform.position = newPosition;
+        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+        Destroy( playerMovement );
+        CharacterDead?.Invoke();
+        Destroy( this );
+    }
+
     private IEnumerator TakeDamageWithDelay()
     {
         yield return new WaitForSeconds( 0.75f ); 
@@ -100,6 +114,11 @@ public class PlayerCombat : MonoBehaviour
         else
         {
             _health = _health - _damageTaken;
+        }
+
+        if(_health<= 0)
+        {
+            PlayerDeath();
         }
 
         Debug.Log( _health );
