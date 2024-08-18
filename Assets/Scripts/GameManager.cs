@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameOverRoutine()
     {
-        yield return new WaitForSecondsRealtime( 2 );
+        yield return new WaitForSecondsRealtime( 3.5f );
         EnableCursor();
         LoadGameOverScene();
     }

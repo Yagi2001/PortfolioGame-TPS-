@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class PlayerCombat : MonoBehaviour
@@ -19,6 +20,8 @@ public class PlayerCombat : MonoBehaviour
     private AudioSource[] _effortSounds;
     [SerializeField]
     private AudioSource _blockSound;
+    [SerializeField]
+    private Image _healthBar;
     private float _timeToAttack = 0f;
     private Animator _anim;
     private bool _hasHit;
@@ -92,6 +95,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void PlayerDeath()
     {
+        _healthBar.fillAmount = 0;
         _anim.SetBool( "isDying", true );
         Vector3 newPosition = transform.position;
         newPosition.y -= 0.7f;
@@ -120,5 +124,21 @@ public class PlayerCombat : MonoBehaviour
         {
             PlayerDeath();
         }
+        StartCoroutine( UpdateHealthBar( _health / 100f ) );
+    }
+
+    private IEnumerator UpdateHealthBar( float targetFillAmount )
+    {
+        float currentFillAmount = _healthBar.fillAmount;
+        float elapsedTime = 0f;
+        float duration = 0.5f; 
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            _healthBar.fillAmount = Mathf.Lerp( currentFillAmount, targetFillAmount, elapsedTime / duration );
+            yield return null;
+        }
+        _healthBar.fillAmount = targetFillAmount;
     }
 }
