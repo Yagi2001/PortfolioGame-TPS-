@@ -41,12 +41,13 @@ public class EnemyCombat : MonoBehaviour
         yield return new WaitForSeconds( 0.15f );
 
         _health -= _damageTakenWithHit;
-        if (_health <= 0)
+        if (_health <= 0 && !isDead)
         {
             isDead = true;
             //Here I will add death anim
             //Destroy( gameObject );
             _anim.SetBool( "isDead", true );
+            GameManager.deadEnemyCounter++;
             Destroy( Enemy );
         }
     }

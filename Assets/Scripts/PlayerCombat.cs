@@ -120,7 +120,5 @@ public class PlayerCombat : MonoBehaviour
         {
             PlayerDeath();
         }
-
-        Debug.Log( _health );
     }
 }
