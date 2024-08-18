@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         PlayerCombat.CharacterDead -= GameOver;
     }
 
-    public void GameOver()
+    private void GameOver()
     {
         StartCoroutine( GameOverRoutine() );
     }
@@ -22,11 +22,20 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameOverRoutine()
     {
         yield return new WaitForSecondsRealtime( 2 );
+        EnableCursor();
         LoadGameOverScene();
     }
 
-    public void LoadGameOverScene()
+    private void LoadGameOverScene()
     {
         SceneManager.LoadScene( "MainMenu" );
     }
+
+    private void EnableCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+
 }
